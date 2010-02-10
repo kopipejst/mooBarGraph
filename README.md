@@ -73,10 +73,10 @@ Other options are optional (list is shown with default values):
 		showValuesColor: '#fff' // color for values in parts for stacked type
 	
 
-Loading data via AJAX 
----------------------
+AJAX data loading 
+-----------------
 
-All you have to do is to call draw() function of your mooBarGraph object and pass url with data in JSON format.
+All you have to do is to call draw() function of your mooBarGraph object and pass url who will return data in JSON format.
 
 	myGraph.draw(url);
 	
