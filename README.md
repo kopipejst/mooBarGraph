@@ -9,7 +9,7 @@ How to use
 
 First you should create element in which you want to create graph. It can be something like:
 
-<div id="myGraph"></div>
+	<div id="myGraph"></div>
 
 After that data array must be created. There are two types available: simple and stacked.
 
