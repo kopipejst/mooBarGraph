@@ -1,7 +1,10 @@
 mooBarGraph
 ===========
 
-AJAX graph plugin for Mootools.
+AJAX graph for Mootools. This plugin will create bar graph based on data array. You can set label, color, url and tooltip text for every bar. Bars can be simple or stacked. Legend can be created automaticaly. Data can be loaded with AJAX and can have negative values for simple type.
+
+![Screenshot](http://workshop.rs/projects/moobargraph/screenshot-1.png)
+
 
 
 How to use
@@ -52,22 +55,22 @@ You should always have container and data options:
 		container // element in which you want mooBarGraph to be created
 		data // array of data for mooBarGraph
 		
-Other options are optional:
+Other options are optional (list is shown with default values):
 
 		width: 400 // width of graph panel in px
 		height: 300 // height of graph panel in px
+		title: false // graph title. can use html tags 		
 		barSpace: 10 // space between bars in px
 		color: '#111111' // default color for your bars
-		colors: false // array of colors for bars. it will be repeated.
-		title: false // graph title. can use html tags 
-		sort: false // 'asc' or 'desc'
+		colors: false // array of colors for bars. it will be used for parts of stacked type or will be repeated for simple type
+		sort: false // 'asc' or 'desc', this can be used only for simple type
 		prefix: '' // string that will be show before bar value
 		postfix: '' // string that will be shown after bar value
 		legend: false // set to true if you want to lefend box be created
-		legendWidth: 100 // width of legend box
+		legendWidth: 100 // width of legend box in px
 		legends: false // array of values for legend
 		showValues: true // for stacked bars type only. false to hide values in sub bars.
-		showValuesColor: '#fff' // color for values in sub bars for stacked type
+		showValuesColor: '#fff' // color for values in parts for stacked type
 	
 
 Loading data via AJAX 
