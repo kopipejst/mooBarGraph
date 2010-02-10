@@ -1,7 +1,7 @@
 mooBarGraph
 ===========
 
-mooBarGraph AJAX graph plugin for Mootools.
+AJAX graph plugin for Mootools.
 
 
 How to use
@@ -13,7 +13,7 @@ First you should create element in which you want to create graph. It can be som
 
 After that data array must be created. There are two types available: simple and stacked.
 
-Array for simple type should be like this and everything exept value is optional:
+Array for simple type should be like this and everything except value is optional:
 
 	new graphData =  new Array(
 		[value1,label1,color1,url1,tooltip1],
@@ -32,7 +32,7 @@ For stacked type also only value is required and everything else is optional. It
 		[[valueN1,valueN2,...,valueNM],labelN,colorN,urlN,tooltipN]
 		);
 
-After you create container and data you have to call mooBarGraph and pass values.
+After you create container and data, you have to create mooBarGraph object with prepared arguments.
 
 	window.addEvent('domready', function() {
 	    var myGraph = new mooBarGraph({
@@ -41,14 +41,10 @@ After you create container and data you have to call mooBarGraph and pass values
 	    });
 	})
 
-This will be enought to create bar graph based on your data, but you can pass few additional options. List of all options is in next section.
-
-Loading data via AJAX is easy. All you have to do is to call draw() function and pass url with data in JSON format.
-
-	myGraph.draw(url);
+This will be enought to create bar graph based on your data, but you can pass few additional options. List of options is in next section.
 
 
-mooBarGraph Options
+mooBarGraph options
 -------------------
 
 You should always have container and data options:
@@ -74,6 +70,27 @@ Other options are optional:
 		showValuesColor: '#fff' // color for values in sub bars for stacked type
 	
 
+Loading data via AJAX 
+---------------------
+
+All you have to do is to call draw() function of your mooBarGraph object and pass url with data in JSON format.
+
+	myGraph.draw(url);
+	
+Example usage:
+
+html
+
+	<a href="#" onclick="myGraph.draw('ajaxdata.php')>click here for new data</a>	
+
+ajaxdata.php
+
+	for($i=0;$i<10;$i++){
+		$ajaxData[$i][] = rand(-5,5);
+	}
+
+	$ajaxData = json_encode($ajaxData);
+	echo $ajaxData;
 
 Screenshots
 -----------
