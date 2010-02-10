@@ -62,7 +62,7 @@ Other options are optional (list is shown with default values):
 		title: false // graph title. can use html tags 		
 		barSpace: 10 // space between bars in px
 		color: '#111111' // default color for your bars
-		colors: false // array of colors for bars. it will be used for parts of stacked type or will be repeated for simple type
+		colors: false // array of colors. it will be used for parts of stacked type or will be repeated for simple type
 		sort: false // 'asc' or 'desc', this can be used only for simple type
 		prefix: '' // string that will be show before bar value
 		postfix: '' // string that will be shown after bar value
