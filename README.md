@@ -1,7 +1,14 @@
 mooBarGraph
 ===========
 
-AJAX graph with MooTools. This plugin will create bar graph based on data array. You can set label, color, url and tooltip text for every bar. Bars can be simple or stacked. Legend can be created automaticaly. Data can be loaded with AJAX and can have negative values for simple type. Compatibile with all major browsers including IE.
+AJAX graph with MooTools. This plugin will create bar graph based on data array. 
+
+Features:
+ You can set label, color, url and tooltip text for every bar
+ Bars can be simple or stacked
+ Legend can be created automaticaly
+ Data can be loaded with AJAX and can have negative values for simple type
+ Compatibile with all major browsers including IE
 
 ![Screenshot](http://workshop.rs/projects/moobargraph/screenshot-1.png)
 
