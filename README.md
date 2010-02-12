@@ -1,10 +1,9 @@
 mooBarGraph
 ===========
 
-AJAX graph for Mootools. This plugin will create bar graph based on data array. You can set label, color, url and tooltip text for every bar. Bars can be simple or stacked. Legend can be created automaticaly. Data can be loaded with AJAX and can have negative values for simple type.
+AJAX graph with MooTools. This plugin will create bar graph based on data array. You can set label, color, url and tooltip text for every bar. Bars can be simple or stacked. Legend can be created automaticaly. Data can be loaded with AJAX and can have negative values for simple type. Compatibile with all major browsers including IE.
 
 ![Screenshot](http://workshop.rs/projects/moobargraph/screenshot-1.png)
-
 
 
 How to use
@@ -76,7 +75,7 @@ Other options are optional (list is shown with default values):
 AJAX data loading 
 -----------------
 
-All you have to do is to call draw() function of your mooBarGraph object and pass url who will return data in JSON format.
+All you have to do is to call draw() function of your mooBarGraph object and pass url that will return data in JSON format.
 
 	myGraph.draw(url);
 	
@@ -94,9 +93,16 @@ ajaxdata.php
 
 	$ajaxData = json_encode($ajaxData);
 	echo $ajaxData;
+	
+	
+The draw() function also can accept array as argument and create graph dynamicly.
+
+	myGraph.draw(arrayOfData);
 
 Screenshots
 -----------
 
-
+![Screenshot 1](http://workshop.rs/projects/moobargraph/screenshot-1.png)
+![Screenshot 2](http://workshop.rs/projects/moobargraph/screenshot-2.png)
+![Screenshot 3](http://workshop.rs/projects/moobargraph/screenshot-3.png)
  
