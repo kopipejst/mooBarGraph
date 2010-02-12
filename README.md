@@ -1,7 +1,7 @@
 mooBarGraph
 ===========
 
-AJAX graph with MooTools. This plugin will create bar graph based on data array. 
+AJAX graph with MooTools.
 
 Features:
 <ul>
@@ -113,4 +113,8 @@ Screenshots
 ![Screenshot 1](http://workshop.rs/projects/moobargraph/screenshot-1.png)
 ![Screenshot 2](http://workshop.rs/projects/moobargraph/screenshot-2.png)
 ![Screenshot 3](http://workshop.rs/projects/moobargraph/screenshot-3.png)
+
+More info
+---------
+http://www.workshop.rs
  
