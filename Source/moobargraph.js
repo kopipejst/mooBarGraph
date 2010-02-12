@@ -11,7 +11,7 @@ requires:
 - core
 
 provides: 
-
+- mooBarGraph
 ...
 */
 
@@ -20,14 +20,13 @@ var mooBarGraph = new Class({
 	Implements: [Options],
 	
 	options:{
-		barSpace: 10,
 		width: 400,
 		height: 300,
+		barSpace: 10,
 		color: '#111111',
 		colors: false,
 		lbl: '',
 		sort: false, // 'asc' or 'desc'
-		position: 'bottom',
 		prefix: '',
 		postfix: '',
 		legendWidth: 100,
@@ -170,8 +169,7 @@ var mooBarGraph = new Class({
 					float			: 'left',
 					position		: 'absolute',
 					left			: this.options.barSpace + i*(barWidth+this.options.barSpace),
-					bottom			: this.options.position == 'bottom' ? 
-											(barValue < 0) ? barBottom-barHeight : barBottom : 'auto', // for top or bottom position
+					bottom			: (barValue < 0) ? barBottom-barHeight : barBottom, // for top or bottom position
 					textAlign		: 'center'
 				}
 			});
