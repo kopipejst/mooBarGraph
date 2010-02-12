@@ -116,5 +116,5 @@ Screenshots
 
 More info
 ---------
-http://www.workshop.rs
+<a href="http://workshop.rs">workshop.rs</a>
  
