@@ -78,6 +78,7 @@ Other options are optional (list is shown with default values):
 		legends: false // array of values for legend
 		showValues: true // for stacked bars type only. false to hide values in sub bars.
 		showValuesColor: '#fff' // color for values in parts for stacked type
+		realTime: false // refreshing graph with new data in real time
 	
 
 AJAX data loading 
