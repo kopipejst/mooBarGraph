@@ -35,15 +35,20 @@ var mooBarGraph = new Class({
 		type: false, // or 'multi'
 		showValues: true,
 		showValuesColor: '#fff',
-		title: false
+		title: false,
+		realTime: false
 	},
 	
 	initialize: function(options){
 		
 		this.setOptions(options);
 		
-		if(this.options.sort == 'asc') this.options.data.sort(this.sortNumberAsc);
-		if(this.options.sort == 'desc') this.options.data.sort(this.sortNumberDesc);
+		if(this.options.sort == 'asc') { 
+			this.options.data.sort(this.sortNumberAsc);
+		}
+		if(this.options.sort == 'desc') {
+			this.options.data.sort(this.sortNumberDesc);
+		}
 		
 		this.unique		= 'mooBar_' + this.options.container.id;
 		this.type		= (this.options.data[0][0] instanceof Array) ? 'multi' : 'simple';
@@ -107,19 +112,25 @@ var mooBarGraph = new Class({
 			var othis = this;
 			var myRequest = new Request({
 				method		: 'get', 
-				url			: url,
+				url		: url,
 				noCache		: true,
 				onRequest	: function(){
-									$(othis.options.container.id).addClass('mooBar_ajaxBox').setProperty('html','');
+							if(othis.options.realTime === false){
+								$(othis.options.container.id).addClass('mooBar_ajaxBox').setProperty('html','');
+							}
 									//$(othis.options.container.id).setStyle('opacity','0.5');
-								},
-				onComplete 	: function(response){ 
-									data = eval('('+response+')');
-									othis.type		= (data[0][0] instanceof Array) ? 'multi' : 'simple';
-									$(othis.options.container.id).removeClass('mooBar_ajaxBox');
-									othis.createGraph(data);
-									//$(othis.options.container.id).setStyle('opacity','1');
-								}
+						},
+				onComplete 	: function(response){
+							if(othis.options.realTime === true){
+								$(othis.options.container.id).addClass('mooBar_ajaxBox').setProperty('html','');
+							}
+							data = eval('('+response+')');
+							//data += othis.options.data;
+							othis.type		= (data[0][0] instanceof Array) ? 'multi' : 'simple';
+							$(othis.options.container.id).removeClass('mooBar_ajaxBox');
+							othis.createGraph(data);
+
+						}
 			}).send();
 				
 		}
@@ -136,11 +147,11 @@ var mooBarGraph = new Class({
 		this.barCount 	= data.length; // number of bars
 		this.legends 	= new Array;
 		
-		legendWidth = this.options.legend ? this.options.legendWidth : 0;
-		barWidth 	= (this.options.width - legendWidth - this.options.barSpace*this.barCount) / this.barCount; // width of bar
-		barMax 		= this.max(data); // max value in data
-		barMin		= this.min(data);
-		barBottom	= 0; // in case of negative values bottom should be height of lowest value
+		var legendWidth = this.options.legend ? this.options.legendWidth : 0;
+		var barWidth 	= (this.options.width - legendWidth - this.options.barSpace*this.barCount) / this.barCount; // width of bar
+		var barMax 		= this.max(data); // max value in data
+		var barMin		= this.min(data);
+		var barBottom	= 0; // in case of negative values bottom should be height of lowest value
 		
 		
 		if(barMin < 0) {
@@ -225,20 +236,30 @@ var mooBarGraph = new Class({
 			barValueHolder.inject(barHolder);	
 			barHolder.inject(this.options.container);
 			
-			lblvalHeight = 0;
+			var lblvalHeight = 0;
 			if(!this.options.legend || this.options.legends){
 				barLabelHolder.inject(barHolder);
 				lblvalHeight += parseInt($$('.mooBar_'+this.options.container.id+'_label').getStyle('height'));
 			}
 			lblvalHeight += parseInt($$('.mooBar_'+this.options.container.id+'_value').getStyle('height'));
 			
+			barBodyHolder.inject(barValueHolder,(barValue < 0) ? 'before' : 'after');
+
 			barBodyHolder.setStyles({
 				height	: barHeight - lblvalHeight,
 				display: 'block'
 			});
 			
-			barBodyHolder.inject(barValueHolder,(barValue < 0) ? 'before' : 'after');
-
+			var barBodyHolderHeight = parseInt(barBodyHolder.getStyle('height'));
+			if (isNaN(barBodyHolderHeight)) {
+				barBodyHolderHeight = 0;
+			}
+						
+			barHolder.setStyles({
+				height: lblvalHeight + barBodyHolderHeight,
+				display: 'block'
+			});
+			
 			/* part for creating stacked graph */
 			if(this.type == 'multi'){
 				for(k=0;k<data[i][0].length;k++){
@@ -271,7 +292,9 @@ var mooBarGraph = new Class({
 			}
 		}
 		// end creating data for legend
-		if(this.options.legend) this.createLegend(); // create legend
+		if(this.options.legend) {
+			this.createLegend(); // create legend
+		}
 
 	},
 	
@@ -279,8 +302,7 @@ var mooBarGraph = new Class({
 
 	/* function for creating legend from array
 	 * array(color,text)
-	 */
-	
+	 */	
 	createLegend : function(){
 
 		var barLegend	= new Element('div', {
@@ -336,21 +358,25 @@ var mooBarGraph = new Class({
 	
 	// count max value of array
 	max: function(ar){
-			maxvalue = 0;
+			var maxvalue = 0;
 			for(var val in ar){
 				value = ar[val][0];
 				if(value instanceof Array) value = this.sum(value);	
-				if (parseFloat(value) > parseFloat(maxvalue)) maxvalue=value;
+				if (parseFloat(value) > parseFloat(maxvalue)) {
+					maxvalue=value;
+				}
 			}	
 
 		return maxvalue;	
 	},
 	
 	min: function(ar){
-		minvalue = 0;
+		var minvalue = 0;
 		for(var val in ar){
 			value = ar[val][0];
-			if (parseFloat(value) < parseFloat(minvalue)) minvalue=value;
+			if (parseFloat(value) < parseFloat(minvalue)) {
+				minvalue=value;
+			}
 		}
 		return minvalue;
 	},
