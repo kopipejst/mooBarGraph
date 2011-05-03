@@ -118,4 +118,10 @@ Screenshots
 More info
 ---------
 <a href="http://workshop.rs">workshop.rs</a>
+
+Changelog
+---------
+- Version 1.3
+-- realTime option for data streaming
+-- fix for the bar difference issue, for positive values only ( thanks to Justin http://somethingcliche.com/ )
  

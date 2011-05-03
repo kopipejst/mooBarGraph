@@ -35,8 +35,7 @@ var mooBarGraph = new Class({
 		type: false, // or 'multi'
 		showValues: true,
 		showValuesColor: '#fff',
-		title: false,
-		realTime: false
+		title: false
 	},
 	
 	initialize: function(options){
@@ -108,25 +107,19 @@ var mooBarGraph = new Class({
 			var othis = this;
 			var myRequest = new Request({
 				method		: 'get', 
-				url		: url,
+				url			: url,
 				noCache		: true,
 				onRequest	: function(){
-							if(othis.options.realTime === false){
-								$(othis.options.container.id).addClass('mooBar_ajaxBox').setProperty('html','');
-							}
+									$(othis.options.container.id).addClass('mooBar_ajaxBox').setProperty('html','');
 									//$(othis.options.container.id).setStyle('opacity','0.5');
-						},
-				onComplete 	: function(response){
-							if(othis.options.realTime === true){
-								$(othis.options.container.id).addClass('mooBar_ajaxBox').setProperty('html','');
-							}
-							data = eval('('+response+')');
-							//data += othis.options.data;
-							othis.type		= (data[0][0] instanceof Array) ? 'multi' : 'simple';
-							$(othis.options.container.id).removeClass('mooBar_ajaxBox');
-							othis.createGraph(data);
-
-						}
+								},
+				onComplete 	: function(response){ 
+									data = eval('('+response+')');
+									othis.type		= (data[0][0] instanceof Array) ? 'multi' : 'simple';
+									$(othis.options.container.id).removeClass('mooBar_ajaxBox');
+									othis.createGraph(data);
+									//$(othis.options.container.id).setStyle('opacity','1');
+								}
 			}).send();
 				
 		}
