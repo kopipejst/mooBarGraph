@@ -11,7 +11,7 @@ requires:
 - core
 
 provides: 
-
+- mooBarGraph
 ...
 */
 
